@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+      http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
+    version="2.2">
+	<entity class="co.edu.usbcali.viajesusb.domain.Cliente">
+		<named-native-query name="Cliente.consultarClientePorFiltros" result-set-mapping="consultarClientePorFiltros">
+			<query>
+				select
+					cl.id_clie idClie,
+					cl.numero_identificacion numeroIdentificacion,
+					cl.id_tiid idTiid,
+					cl.nombre nombre,
+					cl.estado estado
+				from
+					cliente cl
+				where 
+					cl.estado = :pEstado and
+					cl.numero_identificacion = :pNumeroIdentificacion and
+					cl.id_tiid= :pIdTiid and
+					cl.nombre like(UPPER(:pNombre))
+				order by 
+					cl.nombre asc	
+			</query>
+		</named-native-query>
+	</entity>
+</entity-mappings>
