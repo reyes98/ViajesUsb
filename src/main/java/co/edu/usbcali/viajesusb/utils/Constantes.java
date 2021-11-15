@@ -39,6 +39,19 @@ public interface Constantes {
 	public final static  String PATRON_NUMERO_IDENTIFICACION= "^\\d+(\\.\\d+)*$";
 	public final static Pattern PATTERN_CORREO = Pattern.compile(PATRON_CORREO, Pattern.CASE_INSENSITIVE);
 	
+	//Parametros contraseñas
+	public final static String MIN_LENGHT="8";
+    public final static String MAX_LENGHT="20";
+    public final static String ONE_DIGIT = "(?=.*[0-9])";  //(?=.*[0-9]) al menos un digito
+    public final static String LOWER_CASE = "(?=.*[a-z])";  //(?=.*[a-z]) al menos una letra minuscula
+    public final static String UPPER_CASE = "(?=.*[A-Z])";  //(?=.*[A-Z]) al menos una letra mayuscula
+    public final static String NO_SPACE = "(?=\\S+$)";  //(?=\\S+$) sin espacios en la cadena
+    public final static String MIN_CHAR = ".{" + MIN_LENGHT + ",}";  //.{8,} al menos  8 letras
+    public final static String MIN_MAX_CHAR = ".{" + MIN_LENGHT + "," + MAX_LENGHT + "}";  //.{8,20} representa el rango de letras
+    public final static String PATRON_PASSWORD = ONE_DIGIT + LOWER_CASE + UPPER_CASE + NO_SPACE + MIN_MAX_CHAR;
+	
+
+	
 	/**   
 	 * @Title: ahora   
 	 * @Description: TODO 

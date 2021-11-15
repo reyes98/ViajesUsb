@@ -9,6 +9,9 @@
  */
 package co.edu.usbcali.viajesusb.repository;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.edu.usbcali.viajesusb.domain.Usuario;
@@ -21,5 +24,56 @@ import co.edu.usbcali.viajesusb.domain.Usuario;
  * @Copyright:  USB
  */
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+	
+	/**   
+	 * @Title: findByLogin   
+	 * @Description: TODO 
+	 * @param: @param login
+	 * @param: @return
+	 * @param: @throws SQLException
+	 * @param: @throws Exception      
+	 * @return: Usuario      
+	 * @throws   
+	 */
+	public List<Usuario> findByLogin(String login) throws SQLException, Exception;
+	
+
+	/**   
+	 * @Title: findByLoginAndPassword   
+	 * @Description: TODO 
+	 * @param: @param login
+	 * @param: @param password
+	 * @param: @return
+	 * @param: @throws SQLException
+	 * @param: @throws Exception      
+	 * @return: Usuario      
+	 * @throws   
+	 */
+	public Usuario findByLoginAndPassword(String login, String password) throws SQLException, Exception;
+	
+	/**   
+	 * @Title: findByIdentificacion   
+	 * @Description: TODO 
+	 * @param: @param identificacion
+	 * @param: @return
+	 * @param: @throws SQLException
+	 * @param: @throws Exception      
+	 * @return: List<Usuario>      
+	 * @throws   
+	 */
+	public List<Usuario> findByIdentificacion(String identificacion) throws SQLException, Exception;
+	
+	/**   
+	 * @Title: findByNombre   
+	 * @Description: TODO 
+	 * @param: @param nombre
+	 * @param: @return
+	 * @param: @throws SQLException
+	 * @param: @throws Exception      
+	 * @return: List<Usuario>      
+	 * @throws   
+	 */
+	public List<Usuario> findByNombreLikeIgnoreCase(String nombre) throws SQLException, Exception;
+	
 
 }

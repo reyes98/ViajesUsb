@@ -38,6 +38,31 @@ public class DestinoServiceImpl implements DestinoService {
 
 	@Autowired
 	private TipoDestinoService tipoDestinoService;
+	
+	@Override
+	public Page<Destino> listar(Pageable pageable) throws SQLException, Exception {
+		Page<Destino> pageDestino = null;
+
+		// Verificando contenido del Pageable
+		if (pageable == null || pageable.isUnpaged()) {
+			throw new Exception("No existe paginación!");
+		}
+		// Verificando numero de página
+		if (pageable.getPageNumber() < 0) {
+			throw new Exception("No existe pagina negativa!");
+		}
+		// Verificando la cantidad de elementos por página
+		if (pageable.getPageSize() > 100) {
+			throw new SQLException("No puedes paginar más de 100 elementos!");
+		}
+		// Verificando que la cantidad no sea negativa
+		if (pageable.getPageSize() < 0) {
+			throw new SQLException("No puedes paginar un número negativo de elementos!");
+		}
+		pageDestino = destinoRepository.findAll(pageable);
+
+		return pageDestino;
+	}
 
 	/**
 	 * <p>
@@ -137,12 +162,6 @@ public class DestinoServiceImpl implements DestinoService {
 		Destino destino = null;
 		TipoDestino tipoDestino = null;
 
-		// Validamos si el destino está presente
-//		if (destinoRepository.findById(destinoDTO.getIdDest()).isPresent()) {
-//			throw new SQLException(
-//					"El destino " + destinoDTO.getIdDest() + " ya existe en la Base de datos, asigna un id diferente!");
-//		}
-
 		// Se valida que el destino tenga un codigo
 		if (destinoDTO.getCodigo() == null || destinoDTO.getCodigo().equals("")) {
 			throw new Exception("Debe ingresar un código de destino válido");
@@ -157,7 +176,6 @@ public class DestinoServiceImpl implements DestinoService {
 		Destino destinoBd = findByCodigoAndEstado(destinoDTO.getCodigo(), Constantes.ACTIVO);
 		if (destinoBd != null) {
 			throw new Exception("El destino con código " + destinoBd.getCodigo() + " ya existe");
-
 		}
 
 		// Se valida que se ingrese el nombre
@@ -248,7 +266,7 @@ public class DestinoServiceImpl implements DestinoService {
 	 * @see co.edu.usbcali.viajesusb.service.DestinoService#actualizarDestino(co.edu.usbcali.viajesusb.dto.DestinoDTO)
 	 */
 	@Override
-	public void actualizarDestino(DestinoDTO destinoDTO) throws Exception {
+	public Destino actualizarDestino(DestinoDTO destinoDTO) throws Exception {
 
 		Destino destino = null;
 		TipoDestino tipoDestino = null;
@@ -361,6 +379,8 @@ public class DestinoServiceImpl implements DestinoService {
 
 		// guardamos el objeto
 		destinoRepository.save(destino);
+		
+		return destino;
 
 	}
 

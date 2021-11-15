@@ -20,7 +20,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import co.edu.usbcali.viajesusb.domain.Cliente;
-import co.edu.usbcali.viajesusb.domain.TipoIdentificacion;
 import co.edu.usbcali.viajesusb.dto.ClienteDTO;
 
 /**
@@ -122,20 +121,21 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	 * @return: Page<Cliente>
 	 * @throws
 	 */
-	public Page<Cliente> findByTipoIdentificacionCodigo(String codigo, Pageable pageable) throws SQLException, Exception;
+	public Page<Cliente> findByTipoIdentificacionCodigo(String codigo, Pageable pageable)
+			throws SQLException, Exception;
 
-	/**   
-	 * @Title: findByTipoIdentificacionCodigo   
-	 * @Description: TODO 
-	 * @param: @param codigo
+	/**
+	 * @Title: findByTipoIdentificacionCodigo
+	 * @Description: TODO
+	 * @param: @param  codigo
 	 * @param: @return
 	 * @param: @throws SQLException
-	 * @param: @throws Exception      
-	 * @return: List<Cliente>      
-	 * @throws   
+	 * @param: @throws Exception
+	 * @return: List<Cliente>
+	 * @throws
 	 */
 	public List<Cliente> findByTipoIdentificacionCodigo(String codigo) throws SQLException, Exception;
-	
+
 	/**
 	 * @Title: findByPrimerApellidoContainsOrSegundoApellidoContains
 	 * @Description: Encuentra por coincidencia de apellidos
@@ -146,25 +146,24 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	 * @return: List<Cliente>
 	 * @throws
 	 */
-	public List<Cliente> findByPrimerApellidoContainsIgnoreCaseOrSegundoApellidoContainsIgnoreCase(String primerApellido,
-			String segundoApellido) throws SQLException, Exception;
+	public List<Cliente> findByPrimerApellidoContainsIgnoreCaseOrSegundoApellidoContainsIgnoreCase(
+			String primerApellido, String segundoApellido) throws SQLException, Exception;
 
-	/**   
-	 * @Title: consultarClientePorFiltros   
+	/**
+	 * @Title: consultarClientePorFiltros
 	 * @Description: Consulta los clientes mediante filtros
-	 * @param: @param estado
-	 * @param: @param numeroIdentificacion
-	 * @param: @param idTiid
-	 * @param: @param nombre
+	 * @param: @param  estado
+	 * @param: @param  numeroIdentificacion
+	 * @param: @param  idTiid
+	 * @param: @param  nombre
 	 * @param: @return
-	 * @param: @throws SQLException      
-	 * @return: List<Cliente>      
-	 * @throws   
+	 * @param: @throws SQLException
+	 * @return: List<Cliente>
+	 * @throws
 	 */
 	@Query(nativeQuery = true)
 	public List<ClienteDTO> consultarClientePorFiltros(@Param("pEstado") String estado,
-			@Param("pNumeroIdentificacion") String numeroIdentificacion,
-			@Param("pIdTiid") Long idTiid,
+			@Param("pNumeroIdentificacion") String numeroIdentificacion, @Param("pIdTiid") Long idTiid,
 			@Param("pNombre") String nombre) throws SQLException, Exception;
 
 }

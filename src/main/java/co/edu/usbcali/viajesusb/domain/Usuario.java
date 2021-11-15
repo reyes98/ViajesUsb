@@ -57,7 +57,7 @@ public class Usuario {
 	@Column(name = "estado", nullable = false, length= 1)
 	private String estado;
 	
-//	@OneToMany(fetch= FetchType.LAZY, mappedBy="plan")
-//	public List<Plan> plan = new ArrayList<>();
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="usuario")
+	private List<Plan> plan = new ArrayList<>();
 
 }

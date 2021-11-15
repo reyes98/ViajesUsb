@@ -26,6 +26,19 @@ import co.edu.usbcali.viajesusb.dto.DestinoDTO;
  * @Copyright:  USB
  */
 public interface DestinoService {
+	
+	/**   
+	 * @Title: listar   
+	 * @Description: TODO 
+	 * @param: @param pageable
+	 * @param: @return
+	 * @param: @throws SQLException
+	 * @param: @throws Exception      
+	 * @return: Page<Destino>      
+	 * @throws   
+	 */
+	public Page<Destino> listar(Pageable pageable) throws SQLException, Exception;
+	
 	/**   
 	 * @Title: findByTipoDestino_Codigo   
 	 * @Description: Retorna la lista de destinos dependiendo del tipo destino
@@ -63,6 +76,18 @@ public interface DestinoService {
 	 */
 	public Destino findByCodigoAndEstado(String codigo, String estado) throws SQLException, Exception;
 	
+	/**   
+	 * @Title: findById   
+	 * @Description: TODO 
+	 * @param: @param id
+	 * @param: @return
+	 * @param: @throws SQLException
+	 * @param: @throws Exception      
+	 * @return: Destino      
+	 * @throws   
+	 */
+	public Destino findById(Long id) throws SQLException, Exception;
+	
 
 	/**   
 	 * @Title: guardarDestino   
@@ -84,7 +109,7 @@ public interface DestinoService {
 	 * @return: void      
 	 * @throws   
 	 */
-	public void actualizarDestino(DestinoDTO destinoDTO) throws SQLException, Exception;
+	public Destino actualizarDestino(DestinoDTO destinoDTO) throws SQLException, Exception;
 
 	/**   
 	 * @Title: eliminarDestino   

@@ -1,6 +1,8 @@
 package co.edu.usbcali.viajesusb.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -35,8 +38,8 @@ public class Plan {
 	@Column(name = "nombre", nullable = false, length= 100)
 	private String nombre;
 	
-	@Column(name = "descripcion_solicitud", nullable = true, length= 4)
-	private int descripcionSolicitud;
+	@Column(name = "descripcion_solicitud", nullable = true, length= 300)
+	private String descripcionSolicitud;
 	
 	@Column(name = "cantidad_personas", nullable = false, length= 4)
 	private int cantidadPersonas;
@@ -68,12 +71,15 @@ public class Plan {
 	@Column(name = "estado", nullable = false, length= 1)
 	private String estado;
 	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name="id_clie" , nullable = false)
-//	private Cliente cliente;
-//	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name="id_usua" , nullable = false)
-//	private Usuario usuario;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_clie" , nullable = false)
+	private Cliente cliente;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_usua" , nullable = false)
+	private Usuario usuario;
+	
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="plan")
+	public List<DetallePlan> detallePlan = new ArrayList<>();
 
 }

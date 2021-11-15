@@ -28,35 +28,21 @@ public class DestinoDTO implements Serializable{
 	 * @Fields serialVersionUID: TODO (what does this variable mean)   
 	 */
 	private static final long serialVersionUID = 1788451459550469775L;
-
-	public Long idDest;
+	private Long idDest;
+	private String codigo;
+	private String nombre;
+	private String descripcion;
+	private String tierra;
+	private String aire;
+	private String mar;
+	private Date fechaCreacion;
+	private Date fechaModificacion;
+	private String usuCreador;
+	private String usuModificador;
+	private String estado;
 	
-	public String codigo;
-	
-	public String nombre;
-	
-	public String descripcion;
-	
-	public String tierra;
-	
-	public String aire;
-	
-	public String mar;
-	
-	public Date fechaCreacion;
-	
-	public Date fechaModificacion;
-	
-	public String usuCreador;
-	
-	public String usuModificador;
-	
-	public String estado;
-	
-	public Long idTide;
-	public String codigoTipoDestino;
-	public String estadoTipoDestino;
-	public String nombreTipoDestino;
-
-
+	private Long idTide;
+	private String codigoTipoDestino;
+	private String estadoTipoDestino;
+	private String nombreTipoDestino;
 }

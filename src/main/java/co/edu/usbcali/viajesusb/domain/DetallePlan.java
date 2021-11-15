@@ -65,11 +65,11 @@ public class DetallePlan {
 	@Column(name = "estado", nullable = false, length= 1)
 	private String estado;
 	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name="id_plan" , nullable = false)
-//	private Plan plan;
-//	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name="id_dest" , nullable = false)
-//	private Destino destino;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_plan" , nullable = false)
+	private Plan plan;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_dest" , nullable = false)
+	private Destino destino;
 }

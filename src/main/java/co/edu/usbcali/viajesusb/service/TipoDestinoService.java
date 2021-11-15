@@ -67,7 +67,7 @@ public interface TipoDestinoService {
 	 * @return: void      
 	 * @throws   
 	 */
-	public void guardarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception;
+	public TipoDestino guardarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception;
 	
 	/**   
 	 * @Title: actualizarDestino   
@@ -78,7 +78,7 @@ public interface TipoDestinoService {
 	 * @return: void      
 	 * @throws   
 	 */
-	public void actualizarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception;
+	public TipoDestino actualizarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception;
 
 	/**   
 	 * @Title: eliminarDestino   
@@ -87,5 +87,5 @@ public interface TipoDestinoService {
 	 * @return: void      
 	 * @throws   
 	 */
-	public void eliminarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception;
+	public void eliminarTipoDestino(Long id) throws SQLException, Exception;
 }

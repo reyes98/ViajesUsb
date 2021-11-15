@@ -144,11 +144,8 @@ class TipoDestinoTest {
 	void debeEliminarDestino() {
 
 		try {
-			TipoDestinoDTO tipoDestinoDTO = new TipoDestinoDTO();
 
-			tipoDestinoDTO.setIdTide(10L);
-
-			tipoDestinoService.eliminarTipoDestino(tipoDestinoDTO);
+			tipoDestinoService.eliminarTipoDestino(10L);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

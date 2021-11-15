@@ -134,7 +134,7 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
 	 * @see co.edu.usbcali.viajesusb.service.TipoDestinoService#guardarTipoDestino(co.edu.usbcali.viajesusb.dto.TipoDestinoDTO)
 	 */
 	@Override
-	public void guardarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception {
+	public TipoDestino guardarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception {
 		TipoDestino tipoDestino = null;
 
 		// Se valida que el tipo destino tenga un codigo
@@ -147,7 +147,8 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
 			throw new Exception("Debe ingresar un código de maximo de 5 caracteres");
 		}
 
-		// Se consulta si existe un tipo destino con el codigo ingresado con estado Activo
+		// Se consulta si existe un tipo destino con el codigo ingresado con estado
+		// Activo
 		TipoDestino tipoDestinoBd = findByCodigoAndEstado(tipoDestinoDTO.getCodigo(), Constantes.ACTIVO);
 		if (tipoDestinoBd != null) {
 			throw new Exception("El tipo destino con código " + tipoDestinoBd.getCodigo() + " ya existe");
@@ -203,6 +204,7 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
 
 		tipoDestinoRepository.save(tipoDestino);
 
+		return tipoDestino;
 	}
 
 	/**
@@ -219,7 +221,7 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
 	 * @see co.edu.usbcali.viajesusb.service.TipoDestinoService#actualizarTipoDestino(co.edu.usbcali.viajesusb.dto.TipoDestinoDTO)
 	 */
 	@Override
-	public void actualizarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception {
+	public TipoDestino actualizarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception {
 		TipoDestino tipoDestino = null;
 		boolean mismo = false;
 
@@ -303,6 +305,7 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
 		tipoDestino.setUsuModificador(tipoDestinoDTO.getUsuModificador());
 
 		tipoDestinoRepository.save(tipoDestino);
+		return tipoDestino;
 
 	}
 
@@ -320,17 +323,17 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
 	 * @see co.edu.usbcali.viajesusb.service.TipoDestinoService#eliminarTipoDestino(co.edu.usbcali.viajesusb.dto.TipoDestinoDTO)
 	 */
 	@Override
-	public void eliminarTipoDestino(TipoDestinoDTO tipoDestinoDTO) throws SQLException, Exception {
-		if (tipoDestinoDTO == null || tipoDestinoDTO.getIdTide() == null) {
+	public void eliminarTipoDestino(Long id) throws SQLException, Exception {
+		if (id == null) {
 			throw new Exception("El destino está vacío");
 		}
 
-		Optional<TipoDestino> destinoBD = tipoDestinoRepository.findById(tipoDestinoDTO.getIdTide());
+		Optional<TipoDestino> destinoBD = tipoDestinoRepository.findById(id);
 
 		if (destinoBD.isPresent()) {
 			tipoDestinoRepository.delete(destinoBD.get());
 		} else {
-			throw new SQLException("El destino " + tipoDestinoDTO.getIdTide() + " no existe!");
+			throw new SQLException("El destino " + id + " no existe!");
 		}
 	}
 

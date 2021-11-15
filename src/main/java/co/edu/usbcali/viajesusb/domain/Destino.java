@@ -1,6 +1,8 @@
 package co.edu.usbcali.viajesusb.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -67,7 +70,7 @@ public class Destino {
 	@JoinColumn(name="id_tide" , nullable = false)
 	private TipoDestino tipoDestino;
 	
-//	@OneToMany(fetch= FetchType.LAZY, mappedBy="detallePlan")
-//	private List<DetallePlan> detallePlan= new ArrayList<>();
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="destino")
+	private List<DetallePlan> detallePlan= new ArrayList<>();
 		
 }

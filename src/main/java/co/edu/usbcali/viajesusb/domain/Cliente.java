@@ -104,6 +104,6 @@ public class Cliente {
 	@JoinColumn(name="id_tiid" , nullable = false)
 	private TipoIdentificacion tipoIdentificacion;
 	
-//	@OneToMany(fetch= FetchType.LAZY, mappedBy="plan")
-//	private List<Plan> plan = new ArrayList<>();
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="cliente")
+	private List<Plan> plan = new ArrayList<>();
 }
