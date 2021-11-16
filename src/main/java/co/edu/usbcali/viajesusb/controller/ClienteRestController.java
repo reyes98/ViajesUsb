@@ -42,6 +42,7 @@ import co.edu.usbcali.viajesusb.service.ClienteService;
 @RestController
 @RequestMapping("/api/cliente")
 public class ClienteRestController {
+	
 	@Autowired
 	private ClienteService clienteService;
 	@Autowired
